@@ -1,61 +1,61 @@
-# quiz-game
+# Quiz Game
 
-A quiz application built exclusively with modern Web APIs and CSS state modifiers. The system dynamically renders programmatic question arrays, locks inputs to prevent transaction abuse, and updates interactive timeline bars to visually represent progress indicators.
+A lightweight, responsive quiz application built using vanilla JavaScript, modern Web APIs, and CSS state modifiers. The app dynamically loads questions, prevents double-submissions, and features a smooth, real-time progress bar.
 
 ---
 
 ## Interactive Gameplay & View States
 
-The application functions as a lightweight Single Page Application (SPA) utilizing explicit view wrapper states toggled dynamically via class list modifications (`.screen.active`).
+The application functions as a Single Page Application (SPA), using simple CSS class toggles (`.screen.active`) to transition between different screens without reloading the page.
 
-### 1. Welcome & Landing Portal
-Upon application load, the state machine serves a clean, accessible landing screen that primes the user lifecycle before generating the active questions dataset.
+### 1. Welcome Screen
+The landing page primes the user and prepares the question dataset before the game begins.
 
 ![Start Screen](assets/start.png)
 
-### 2. Real-Time Option Validation
-Once initialized, the engine cycles dynamically through question nodes. Selecting an option triggers an instant visual audit: correct choices light up in standard correct-green, and the system freezes the controls to prevent multiple submissions.
+### 2. Instant Feedback (Correct Answer)
+When a user selects the correct option, the choice highlights in green and the controls instantly lock to prevent multiple submissions.
 
 ![Correct Answer Flow](assets/example.png)
 
-### 3. Defensive Error Indicators
-If a user selects an incorrect option, the validation logic highlights their chosen target in an error-red while simultaneously revealing the correct answer element to optimize user learning retention.
+### 3. Error Handling (Incorrect Answer)
+If a user selects the wrong answer, their choice highlights in red while the correct answer is simultaneously revealed to help with learning retention.
 
 ![Incorrect Answer Feedback](assets/wrong.png)
 
 ---
 
-## Key Architectural Capabilities
+## Key Features & Architecture
 
-### 1. Declarative View State Machine
-Rather than forcing destructive page routing sequences, the application mounts three modular containers simultaneously in the document layout (`#start-screen`, `#quiz-screen`, `#result-screen`):
-* **State Interchanges:** Handled seamlessly by executing `.classList.add("active")` or `.classList.remove("active")` vectors.
-* **Layout Decoupling:** Styles are bound to standard hidden properties (`display: none`), with active classes dynamically expanding components into display view loops (`display: block`).
+### 1. View State Machine
+Instead of using complex page routing, the application includes three modular containers in the HTML layout (`#start-screen`, `#quiz-screen`, and `#result-screen`).
+* **Screen Swapping:** Managed by adding or removing an `.active` class via JavaScript `classList`.
+* **Layout Control:** Hidden screens use `display: none`, while the active screen switches to `display: block`.
 
-### 2. Dynamic Input Locking & Double-Submit Protection
-To protect data arrays and eliminate scoring anomalies, the scoring engine locks interactive controls once a user clicks an option:
-* **The Intercept Guard:** Employs a state flag (`answersDisabled = true`) to intercept input events immediately upon an active selection.
-* **Visual Validation Matrix:** Iterates through options using array builders (`Array.from()`), applying color-coded classes (`.correct` or `.incorrect`) to provide immediate validation feedback while stripping click access.
+### 2. Double-Submit Protection
+To keep scoring accurate, the engine locks interactive controls the moment an option is clicked:
+* **Input Guard:** A state flag (`answersDisabled = true`) stops any further clicks once a selection is made.
+* **Visual Matrix:** The app loops through all options, applies color-coded classes (`.correct` or `.incorrect`), and disables future interaction.
 
-### 3. Real-Time Proportional Timeline (Progress Bar)
-Features an automated tracking engine designed to keep users engaged across long testing flows:
-* Dynamic arithmetic algorithms continuously map the structural state ratio: `(currentQuestionIndex / quizQuestions.length) * 100`.
-* The calculated percentage maps explicitly onto a CSS width transform parameter using an accelerated transition animation matrix (`transition: width 0.3s ease`).
+### 3. Live Progress Bar
+Features a smooth tracking indicator to keep players updated on their progress:
+* Calculates the current progress using a simple percentage formula: `(currentQuestionIndex / totalQuestions) * 100`.
+* Applies the percentage directly to a CSS width property, animated with a smooth transition (`transition: width 0.3s ease`).
 
 ---
 
 ## Technical Highlights
 
-* **Pure Separation of Concerns:** Core question metrics are cleanly isolated inside modular JSON array objects containing text descriptors, answer sub-arrays, and Boolean correct flags.
-* **Asynchronous Thread Control:** Employs precise callback timing wrappers (`setTimeout()`) to delay scene transitions by exactly 1000ms, providing users with feedback before moving to the next question.
-* **Polymorphic Scoring Output:** Computes contextual string messages ("Perfect!", "Great job!", etc.) on the final card layout based on raw accuracy percentages.
+* **Separation of Concerns:** Questions are cleanly organized inside a modular array of objects containing the question text, option choices, and correct answer flags.
+* **Timed Transitions:** Uses `setTimeout()` to pause the screen for exactly 1000ms after an answer is selected, giving the user time to see the feedback before the next question loads.
+* **Dynamic Results:** Computes custom end-game messages (e.g., "Perfect!", "Great job!") based on the user's final score percentage.
 
 ---
 
-## Quick Execution
+## Quick Start
 
-Run this lightweight frontend package on your system without installing build servers or package runtimes:
+You can run this project locally without needing any build tools, servers, or package managers:
 
-1. Clone the project files locally:
+1. Clone the repository:
    ```bash
    git clone [https://github.com/YOUR_USERNAME/vanilla-js-quiz-game.git](https://github.com/YOUR_USERNAME/vanilla-js-quiz-game.git)
