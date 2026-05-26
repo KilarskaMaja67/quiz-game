@@ -14,12 +14,12 @@ Upon application load, the state machine serves a clean, accessible landing scre
 ![Start Screen](assets/start.png)
 
 ### 2. Real-Time Option Validation
-Once initialized, the engine cycles dynamically through question nodes. Selecting an option triggers an instant visual audit: correct choices light up in standard emerald success vectors, and the system freezes the controls to prevent multiple submissions.
+Once initialized, the engine cycles dynamically through question nodes. Selecting an option triggers an instant visual audit: correct choices light up in standard correct-green, and the system freezes the controls to prevent multiple submissions.
 
 ![Correct Answer Flow](assets/example.png)
 
 ### 3. Defensive Error Indicators
-If a user selects an incorrect option, the validation logic highlights their chosen target in a clear crimson error scheme while simultaneously revealing the correct answer element to optimize user learning retention.
+If a user selects an incorrect option, the validation logic highlights their chosen target in an error-red while simultaneously revealing the correct answer element to optimize user learning retention.
 
 ![Incorrect Answer Feedback](assets/wrong.png)
 
@@ -27,7 +27,7 @@ If a user selects an incorrect option, the validation logic highlights their cho
 
 ## Key Architectural Capabilities
 
-### ⚙️ 1. Declarative View State Machine
+### 1. Declarative View State Machine
 Rather than forcing destructive page routing sequences, the application mounts three modular containers simultaneously in the document layout (`#start-screen`, `#quiz-screen`, `#result-screen`):
 * **State Interchanges:** Handled seamlessly by executing `.classList.add("active")` or `.classList.remove("active")` vectors.
 * **Layout Decoupling:** Styles are bound to standard hidden properties (`display: none`), with active classes dynamically expanding components into display view loops (`display: block`).
